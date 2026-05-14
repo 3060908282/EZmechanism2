@@ -1,0 +1,5 @@
+rdkit>=2023.0
+openpyxl>=3.1.0
+flask>=3.0.0
+flask-cors>=4.0.0
+networkx>=3.0

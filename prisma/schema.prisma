@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PdbTest {
+  id                   String   @id @default(cuid())
+  testId               String   @unique
+  pdbId                String?
+  state                String   @default("run")
+  comment              String   @default("")
+  currentStep          Int      @default(1)
+  pdbRawText           String?
+  pdbInfoJson          String?
+  pdbEntriesJson       String?
+  selectedChain        String?
+  selectedResiduesJson String?
+  substratesJson       String?
+  reactantSmiles       String?
+  productSmiles        String?
+  maxConfigs           Int      @default(100)
+  maxRules             Int      @default(0)
+  maxBondLength        Float    @default(11.0)
+  jobId                String?
+  searchResultJson     String?
+  matchResultJson      String?
+  predictResultJson    String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model ReactionRule {
+  id                 Int      @id @default(autoincrement())
+  ruleId             String   @default("")
+  mcsaId             String   @default("")
+  mechanismId        String   @default("")
+  stepId             String   @default("")
+  isReversed         Boolean  @default(false)
+  ruleCompleteInStep Boolean  @default(false)
+  reactionSmarts     String
+  reactantSmarts     String   @default("")
+  productSmarts      String   @default("")
+  radicalInStep      Boolean  @default(false)
+  ruleArrows         String   @default("")
+  sourceTag          String   @default("mcsa")
+  createdAt          DateTime @default(now())
+}

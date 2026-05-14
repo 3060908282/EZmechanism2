@@ -1,0 +1,16 @@
+{
+  "name": "prediction-service",
+  "version": "1.0.0",
+  "description": "M-CSA Enzyme Mechanism Prediction Flask Service",
+  "private": true,
+  "scripts": {
+    "start": "python3 index.py",
+    "setup": "pip install --break-system-packages rdkit openpyxl flask flask-cors"
+  },
+  "dependencies": {
+    "rdkit": ">=2023.0",
+    "openpyxl": ">=3.1.0",
+    "flask": ">=3.0.0",
+    "flask-cors": ">=4.0.0"
+  }
+}
